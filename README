@@ -1,0 +1,74 @@
+# The R script xegaSelectGene.R
+
+The directory selectGene contains the implementation 
+of a set of selection and evaluation functions for 
+a genetic algorithm. 
+
+
+The easiest installation is by using install.packages from R.
+
+1. Linux:
+Start R in the directory where you have stored xegaSelectGene_0.0.0.1.tar.gz
+
+> install.packages("xegaSelectGene_0.0.0.1.tar.gz")
+
+1. Windows:
+Start R in the directory where you have stored xegaSelectGene_0.0.0.1.zip
+
+> install.packages("xegaSelectGene_0.0.0.1.zip")
+
+The R script xegaSelectGene.R generates
+
+1. the man pages of the package.
+2. the pdf documentation of the package.
+3. the compilation and installation of the package.
+   (You  must adapt the variables path and pName
+    in the script selectGene.R:
+
+    path<-"~/dev/iaa/genetic/xega/"
+    pName<-"xegaSelectGene"
+
+    to the directory where you copy the package.
+
+You need to install the R-package devtools for this R script.
+
+There are two ways to use the code:
+
+1. Change into the R directory which contains the code, start R and load all code files:
+
+source("xegaSelectGene.R")
+
+Note that the package selectGene provides selection and evaluation functions
+to all genetic algorithms of the family sgX:
+sga, sgp, sgPerm, (and  sge, sgde).
+
+Use the pdf-Manual! 
+
+2. Adapt the path in selectGene.R and install the library selectGene:
+
+Rscript xegaSelectGene.R
+
+Restart R and
+
+library(xegaSelectGene)
+
+You get all elements of the package by
+
+xegaSelectGene::
+
+and pressing the tabulator.
+
+You get the man page by e.g 
+
+SelectLinearRank?
+
+or 
+
+help(SelectLinearRank)
+
+All examples given on a man page can be executed by
+
+example(SelectLinearRank)
+
+Note that man pages and examples are only available, if you install 
+the package as a library.
