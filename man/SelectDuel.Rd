@@ -17,7 +17,7 @@ SelectDuel(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectDuel} implements selection
+\code{SelectDuel()} implements selection
              by a tournament between 2
              randomly selected genes. The best gene always wins.
              This is the version of tournament selection 
@@ -38,16 +38,16 @@ SelectDuel(fit, NewlFselectGenes(), length(fit))
 Other Selection Functions: 
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

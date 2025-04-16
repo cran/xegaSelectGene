@@ -69,17 +69,25 @@ A problem environment for the TSP.
                         which does not improve the solution.
 
  \item 
- \code{$solution()}         known optimal solution
+ \code{$solution()}         known optimal solution.
  \item 
- \code{$path()}             known optimal round trip 
+ \code{$path()}             known optimal round trip.
+ \item 
+ \code{$max()}            \code{FALSE}.
+ \item {$globalOptimum()}  a named list with the following elements:
+    \itemize{
+    \item \code{$param}    the optimal permutation.
+    \item \code{$value}    the known optimal solution.
+    \item \code{$is.minimum}  \code{TRUE}. 
+    }    
  }
 }
 \description{
-\code{newTSP} generates the problem environment 
+\code{newTSP()} generates the problem environment 
              for a traveling salesman problem (TSP).
 }
 \details{
-\code{newTSP} provides several local permutation 
+\code{newTSP()} provides several local permutation 
        improvement heuristics: 
        a greedy path of length k starting
        from city i, 

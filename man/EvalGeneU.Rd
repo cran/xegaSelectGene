@@ -15,7 +15,7 @@ EvalGeneU(gene, lF)
 A gene (with \code{$evaluated==TRUE}).
 }
 \description{
-\code{EvalGeneU} evaluates a gene in
+\code{EvalGeneU()} evaluates a gene in
              a problem environment.
 }
 \details{
@@ -35,7 +35,7 @@ If the evaluation of the fitness function of the
                 population.
          }
 
-         The boolean function \code{lF$ReportEvalErrors} controls
+         The boolean function \code{lF$ReportEvalErrors()} controls
          the output of error messages for evaluation failures. 
          Rationale: In grammatical evolution, the standard approach 
          ignores attempts the evaluate incomplete programs.
@@ -58,9 +58,9 @@ EvalGeneU(g2, lF)
 }
 \seealso{
 Other Evaluation Functions: 
+\code{\link{EvalGene}()},
 \code{\link{EvalGeneDet}()},
 \code{\link{EvalGeneR}()},
-\code{\link{EvalGeneStoch}()},
-\code{\link{EvalGene}()}
+\code{\link{EvalGeneStoch}()}
 }
 \concept{Evaluation Functions}

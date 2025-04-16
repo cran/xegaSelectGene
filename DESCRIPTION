@@ -1,6 +1,6 @@
 Package: xegaSelectGene
 Title: Selection of Genes and Gene Representation Independent Functions
-Version: 1.0.0.0
+Version: 1.0.0.3
 Authors@R: 
     person(given = "Andreas",
            family = "Geyer-Schulz",
@@ -47,17 +47,17 @@ Description: This collection of gene representation-independent
              Whitley, Darrell (1989, ISBN:1-55860-066-3),
              Wickham, Hadley (2019, ISBN:978-815384571).
 License: MIT + file LICENSE
-URL: <https://github.com/ageyerschulz/xegaSelectGene>
+URL: https://github.com/ageyerschulz/xegaSelectGene
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: testthat (>= 3.0.0)
 Collate: 'evalGene.R' 'scaling.R' 'selectGene.R'
         'selectGeneBenchmark.R' 'timer.R' 'DeJongF4.R' 'Parabola2D.R'
         'newXOR.R' 'newTSP.R' 'xegaSelectGene-package.R'
 NeedsCompilation: no
-Packaged: 2024-02-01 10:49:39 UTC; dj2333
+Packaged: 2025-04-16 09:43:40 UTC; dj2333
 Author: Andreas Geyer-Schulz [aut, cre]
     (<https://orcid.org/0009-0000-5237-3579>)
 Maintainer: Andreas Geyer-Schulz <Andreas.Geyer-Schulz@kit.edu>
 Repository: CRAN
-Date/Publication: 2024-02-02 19:40:02 UTC
+Date/Publication: 2025-04-16 10:30:02 UTC

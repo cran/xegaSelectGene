@@ -15,7 +15,7 @@ STournament(fit, lF)
 Index of candidate.
 }
 \description{
-\code{STournament} is implemented in two steps:
+\code{STournament()} is implemented in two steps:
 \enumerate{
 \item
 A subset of size k of the population is selected with uniform probability.

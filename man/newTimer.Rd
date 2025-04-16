@@ -18,7 +18,7 @@ newTimer()
          of a timed function and/or a timed block of R-Code in seconds.
 }
 \description{
-\code{newTimer} sets up a timer object with two 
+\code{newTimer()} sets up a timer object with two 
              internal state variables, namely \code{count} 
              to count the number of timer calls and
              \code{tUsed} to calculate the total time spent in a code block
@@ -28,8 +28,8 @@ newTimer()
 \itemize{
       \item 
             Generate a timer: 
-            \code{a<-newTimer()} sets up the timer \code{a}.
-            The timer \code{a} supports three methods:
+            \code{a<-newTimer()} sets up the timer \code{a()}.
+            The timer \code{a()} supports three methods:
       \enumerate{
        \item \code{a()} or 
              \code{a("Measure")} or 
@@ -46,14 +46,14 @@ newTimer()
              the function/block or R-code has been executed.
           }
        \item 
-       The second way of usage is with the \code{Timed} function:  
+       The second way of usage is with the \code{Timed()} function:  
       \enumerate{
       \item Generate a timer: 
-            \code{a<-newTimer()} sets up the timer \code{a}.
-       \item You convert a function \code{b} into a timed function
-             \code{bTimed} by 
+            \code{a<-newTimer()} sets up the timer \code{a()}.
+       \item You convert a function \code{b()} into a timed function
+             \code{bTimed()} by 
              \code{bTimed<-Timed(a, b)}. 
-       \item You use \code{bTimed} instead of \code{b}.
+       \item You use \code{bTimed()} instead of \code{b()}.
        \item At the end, you can query the aggregated time and 
              the aggregated number of executions by 
              \code{a("TimeUsed")} and 

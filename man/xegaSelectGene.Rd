@@ -2,6 +2,7 @@
 % Please edit documentation in R/xegaSelectGene-package.R
 \docType{package}
 \name{xegaSelectGene}
+\alias{xegaSelectGene-package}
 \alias{xegaSelectGene}
 \title{Package xegaSelectGene.}
 \description{
@@ -133,22 +134,22 @@ A row is a vector of population statistics.
 
 \tabular{rcl}{ 
 \strong{Constant}   \tab \strong{Default} \tab \strong{Used in} \cr 
-lF$Offset           \tab 1                \tab ScaleFitness \cr
-lF$ScalingExp       \tab 1                \tab ScalingFitness,  \cr 
-                    \tab                  \tab ThresholdScaleFitness  \cr 
-lF$ScalingExp2      \tab 1                \tab ThresholdScaleFitness  \cr 
-lF$ScalingThreshold \tab 1                \tab ThresholdScaleFitness  \cr 
-lF$RDMWeight        \tab 1.0              \tab ContinuousScaleFitness  \cr 
-lF$DRMin            \tab 0.5              \tab DispersionRatio  \cr 
-lF$DRMax            \tab 2.0              \tab DispersionRatio  \cr 
-lF$ScalingDelay     \tab 1                \tab DispersionRatio  \cr 
+lF$Offset()           \tab 1                \tab ScaleFitness() \cr
+lF$ScalingExp()       \tab 1                \tab ScalingFitness(),  \cr 
+                    \tab                  \tab ThresholdScaleFitness()  \cr 
+lF$ScalingExp2()      \tab 1                \tab ThresholdScaleFitness()  \cr 
+lF$ScalingThreshold() \tab 1                \tab ThresholdScaleFitness()  \cr 
+lF$RDMWeight()        \tab 1.0              \tab ContinuousScaleFitness()  \cr 
+lF$DRMin()            \tab 0.5              \tab DispersionRatio()  \cr 
+lF$DRMax()            \tab 2.0              \tab DispersionRatio()  \cr 
+lF$ScalingDelay()     \tab 1                \tab DispersionRatio()  \cr 
 }
 
 \tabular{rcl}{ 
 \strong{State Variable} \tab \strong{Start Value} \tab \strong{Used in} \cr 
-lF$RDM           \tab 1.0                \tab ThresholdScaleFitness \cr
-                 \tab                    \tab ContinuousScaleFitness \cr
-                 \tab                    \tab xega::RunGA \cr
+lF$RDM()           \tab 1.0                \tab ThresholdScaleFitness() \cr
+                 \tab                    \tab ContinuousScaleFitness() \cr
+                 \tab                    \tab xega::xegaRun() \cr
 }
 }
 
@@ -157,21 +158,21 @@ lF$RDM           \tab 1.0                \tab ThresholdScaleFitness \cr
 
 \tabular{rcl}{ 
 \strong{Constant} \tab \strong{Default} \tab \strong{Used in} \cr 
-lF$SelectionContinuation \tab TRUE \tab xegaPopulation::xegaNextPopulation \cr 
-lF$Offset           \tab 1                \tab SelectPropFitOnLn \cr
-                    \tab                  \tab SelectPropFit \cr
-                    \tab                  \tab SelectPropFitM \cr
-                    \tab                  \tab SelectPropFitDiffOnLn \cr
-                    \tab                  \tab SelectPropFitDiff \cr
-                    \tab                  \tab SUS \cr
-                    \tab                  \tab SelectLinearRankTSR \cr
-lF$eps              \tab 0.01             \tab SelectPropFitDiffM \cr
-lF$TournamentSize   \tab 2                \tab Tournament \cr
-                    \tab                  \tab SelectTournament \cr
-                    \tab                  \tab STournament \cr
-                    \tab                  \tab SelectSTournament \cr
-lF$SelectionBias    \tab 1.5              \tab SelectLRSelective \cr
-lF$MaxTSR           \tab 1.5              \tab SelectLinearRankTSR 
+lF$SelectionContinuation() \tab TRUE \tab xegaPopulation::xegaNextPopulation() \cr 
+lF$Offset()           \tab 1                \tab SelectPropFitOnLn() \cr
+                    \tab                  \tab SelectPropFit() \cr
+                    \tab                  \tab SelectPropFitM() \cr
+                    \tab                  \tab SelectPropFitDiffOnLn() \cr
+                    \tab                  \tab SelectPropFitDiff() \cr
+                    \tab                  \tab SUS() \cr
+                    \tab                  \tab SelectLinearRankTSR() \cr
+lF$eps()              \tab 0.01             \tab SelectPropFitDiffM() \cr
+lF$TournamentSize()   \tab 2                \tab Tournament() \cr
+                    \tab                  \tab SelectTournament() \cr
+                    \tab                  \tab STournament() \cr
+                    \tab                  \tab SelectSTournament() \cr
+lF$SelectionBias()    \tab 1.5              \tab SelectLRSelective() \cr
+lF$MaxTSR()           \tab 1.5              \tab SelectLinearRankTSR() 
 }
 }
 
@@ -212,16 +213,16 @@ lF$MaxTSR           \tab 1.5              \tab SelectLinearRankTSR
 
 The following constant functions are expected to be in the local function list lF.
           \itemize{
-          \item \code{Offset()} in \code{SelectPropFit}:
+          \item \code{Offset()} in \code{SelectPropFit()}:
                 Since all fitness values must be larger than 0,
                 in case of negative fitness values, \code{Offset()} 
                 is the value of the minimum fitness value (default: 1).
-          \item \code{Eps()} in \code{SelectPropFitDiff}:
+          \item \code{Eps()} in \code{SelectPropFitDiff()}:
                 \code{Eps()} is a very small value to eliminate 
                 differences of 0.
-          \item \code{TournamentSize()} in \code{SelectTournament}:
+          \item \code{TournamentSize()} in \code{SelectTournament()}:
                 Specifies the size of the tournament. Per default: 2.
-          \item \code{SelectionBias()} in \code{SelectLinearRank}.
+          \item \code{SelectionBias()} in \code{SelectLinearRank()}.
                  This constant must be larger than 1.0 and usually
                  should be set at most to 2.0.
                  Increasing \code{SelectionBias()}
@@ -259,16 +260,16 @@ The file \code{selectGeneBenchmark.R}: A benchmark of selection functions.
 
 The file \code{evalGene.R} contains different function evaluation methods.
 \enumerate{
-\item \code{EvalGeneU} evaluates a gene unconditionally. (Default.)
-\item \code{EvalGeneR} evaluates a gene unconditionally
+\item \code{EvalGeneU()} evaluates a gene unconditionally. (Default.)
+\item \code{EvalGeneR()} evaluates a gene unconditionally
        and allows the repair of the gene by the decoder.
 
-\item \code{EvalGeneDet} memoizes the evaluation of a gene in the 
+\item \code{EvalGeneDet()} memoizes the evaluation of a gene in the 
              in the gene. Genes are evaluated only once.
              This leads to a performance improvement for
              deterministic functions.
 
-\item \code{EvalGeneStoch} computes an incremental average of 
+\item \code{EvalGeneStoch()} computes an incremental average of 
            the value of a gene.
            The average converges to the true value as the number 
            of repeated evaluations of a gene increases.
@@ -309,15 +310,18 @@ the population layer, and the gene layer:
 
 \itemize{
 \item
-The user interface layer (package \code{xega}) 
-provides a function call interface and configuration support
+The user interface layer (package \code{xega} 
+<https://CRAN.R-project.org/package=xega> 
+) provides a function call interface and configuration support
 for several algorithms: genetic algorithms (sga), 
 permutation-based genetic algorithms (sgPerm), 
 derivation-free algorithms as e.g. differential evolution (sgde), 
 grammar-based genetic programming (sgp) and grammatical evolution
 (sge). 
 \item
-The population layer (package \code{xegaPopulation}) contains
+The population layer (package \code{xegaPopulation}
+<https://CRAN.R-project.org/package=xegaPopulation> 
+) contains
 population-related functionality as well as support for 
 population statistics dependent adaptive mechanisms and parallelization.
 \item 
@@ -325,23 +329,41 @@ The gene layer is split into a representation-independent and
 a representation-dependent part:
 \enumerate{
 \item 
- The representation-indendent part (package \code{xegaSelectGene})
- is responsible for variants of selection operators, evaluation 
+ The representation-indendent part (package \code{xegaSelectGene}
+<https://CRAN.R-project.org/package=xegaSelectGene> 
+ ) is responsible for variants of selection operators, evaluation 
  strategies for genes, and profiling and timing capabilities.        
 \item 
  The representation-dependent part consists of the following packages: 
 \itemize{
-\item \code{xegaGaGene} for binary coded genetic algorithms.
-\item \code{xegaPermGene} for permutation-based genetic algorithms.
-\item \code{xegaDfGene} for derivation-free algorithms as e.g. 
+\item \code{xegaGaGene} 
+<https://CRAN.R-project.org/package=xegaGaGene>
+      for binary coded genetic algorithms.
+\item \code{xegaPermGene} 
+<https://CRAN.R-project.org/package=xegaPermGene> 
+      for permutation-based genetic algorithms.
+\item \code{xegaDfGene} 
+<https://CRAN.R-project.org/package=xegaDfGene> 
+      for derivation-free algorithms as e.g. 
                         differential evolution.
-\item \code{xegaGpGene} for grammar-based genetic algorithms.
-\item \code{xegaGeGene} for grammatical evolution algorithms.
+\item \code{xegaGpGene} 
+<https://CRAN.R-project.org/package=xegaGpGene>
+       for grammar-based genetic algorithms.
+\item \code{xegaGeGene} 
+<https://CRAN.R-project.org/package=xegaGaGene>
+for grammatical evolution algorithms.
 }
 The packages \code{xegaDerivationTrees} and \code{xegaBNF} support
 the last two packages:
-\code{xegaBNF} essentially provides a grammar compiler, and 
-\code{xegaDerivationTrees} is an abstract data type for derivation trees.
+\itemize{
+\item \code{xegaBNF} 
+<https://CRAN.R-project.org/package=xegaBNF> 
+essentially provides a grammar compiler and
+\item 
+\code{xegaDerivationTrees} 
+<https://CRAN.R-project.org/package=xegaDerivationTrees> 
+an abstract data type for derivation trees.
+}
 }}
 }
 
@@ -361,6 +383,13 @@ the last two packages:
  From CRAN by \code{install.packages('xegaSelectGene')}
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ageyerschulz/xegaSelectGene}
+}
+
+}
 \author{
 Andreas Geyer-Schulz
 }

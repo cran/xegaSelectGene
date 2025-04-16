@@ -6,14 +6,14 @@
 
 #' Counter
 #' 
-#' @description \code{newCounter} sets up a counter object with one 
+#' @description \code{newCounter()} sets up a counter object with one 
 #'              internal state variable, namely \code{count} 
 #'              to count the number of counter calls.
 #' 
 #' @details 
 #'             Generate a counter: 
-#'             \code{a<-newCounter()} sets up the counter \code{a}.
-#'             The counter \code{a} supports three methods:
+#'             \code{a<-newCounter()} sets up the counter \code{a()}.
+#'             The counter \code{a()} supports three methods:
 #'       \enumerate{
 #'        \item \code{a()} or 
 #'              \code{a("Measure")} or 
@@ -28,7 +28,7 @@
 #'              the function/block or R-code has been executed.
 #'           }
 #'
-#' @return \code{newCounter()} returns a counter function.
+#' @return \code{newCounter()} returns \code{a_counter_function()}.
 #' @return \code{a_counter_function()} returns the 
 #'          number of times it has been called
 #'         (invisible).
@@ -56,7 +56,7 @@ newCounter<-function()
 
 #' Timer for R code chunks.
 #' 
-#' @description \code{newTimer} sets up a timer object with two 
+#' @description \code{newTimer()} sets up a timer object with two 
 #'              internal state variables, namely \code{count} 
 #'              to count the number of timer calls and
 #'              \code{tUsed} to calculate the total time spent in a code block
@@ -66,8 +66,8 @@ newCounter<-function()
 #'       \itemize{
 #'       \item 
 #'             Generate a timer: 
-#'             \code{a<-newTimer()} sets up the timer \code{a}.
-#'             The timer \code{a} supports three methods:
+#'             \code{a<-newTimer()} sets up the timer \code{a()}.
+#'             The timer \code{a()} supports three methods:
 #'       \enumerate{
 #'        \item \code{a()} or 
 #'              \code{a("Measure")} or 
@@ -84,14 +84,14 @@ newCounter<-function()
 #'              the function/block or R-code has been executed.
 #'           }
 #'        \item 
-#'        The second way of usage is with the \code{Timed} function:  
+#'        The second way of usage is with the \code{Timed()} function:  
 #'       \enumerate{
 #'       \item Generate a timer: 
-#'             \code{a<-newTimer()} sets up the timer \code{a}.
-#'        \item You convert a function \code{b} into a timed function
-#'              \code{bTimed} by 
+#'             \code{a<-newTimer()} sets up the timer \code{a()}.
+#'        \item You convert a function \code{b()} into a timed function
+#'              \code{bTimed()} by 
 #'              \code{bTimed<-Timed(a, b)}. 
-#'        \item You use \code{bTimed} instead of \code{b}.
+#'        \item You use \code{bTimed()} instead of \code{b()}.
 #'        \item At the end, you can query the aggregated time and 
 #'              the aggregated number of executions by 
 #'              \code{a("TimeUsed")} and 
@@ -146,7 +146,7 @@ newTimer<-function()
 #' Transformation into a counted function
 #'
 #' @description
-#'     \code{Counted} takes two functions as arguments: 
+#'     \code{Counted()} takes two functions as arguments: 
 #'     The function whose call frequency 
 #'     should be measured and a counter object created by \code{newCounter()}.
 #'     It returns a counted function. 
@@ -175,7 +175,7 @@ Counted<-function(FUN, counter)
 #' Transformation into a timed function
 #'
 #' @description
-#'     \code{Timed} takes two functions as arguments, 
+#'     \code{Timed()} takes two functions as arguments, 
 #'     namely the function whose time and call frequency 
 #'     should be measured and a timer object created by \code{newTimer()}.
 #'     It returns a timed function. 

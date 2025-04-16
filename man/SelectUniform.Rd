@@ -17,7 +17,7 @@ SelectUniform(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectUniform} implements selection
+\code{SelectUniform()} implements selection
              by choosing a gene with equal probability.
 }
 \details{
@@ -41,12 +41,12 @@ Other Selection Functions:
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},

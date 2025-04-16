@@ -17,15 +17,16 @@ SelectPropFitOnln(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectPropFitOnln} implements selection
+\code{SelectPropFitOnln()} implements selection
              proportional to fitness. Negative fitness
              vectors are shifted to \eqn{R^+}.
-             The default of the function \code{lf$Offset} is \code{1}. 
+             The default of the function \code{lF$Offset()} is \code{1}. 
              Holland's schema theorem uses this selection function.
              See John Holland (1975) for further information.
 
  @details This is a fast implementation with equivalent results 
-          to the functions \code{SelectPropFit} and \code{SelectPropFitM}.
+          to the functions \code{SelectPropFit()} and 
+          \code{SelectPropFitM()}.
           Its runtime is \eqn{O(n . ln(n))}.
 }
 \section{Credits}{
@@ -50,15 +51,15 @@ Other Selection Functions:
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

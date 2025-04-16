@@ -15,7 +15,7 @@ Timed(FUN, timer)
 A timed function.
 }
 \description{
-\code{Timed} takes two functions as arguments, 
+\code{Timed()} takes two functions as arguments, 
     namely the function whose time and call frequency 
     should be measured and a timer object created by \code{newTimer()}.
     It returns a timed function.

@@ -13,7 +13,7 @@ SelectGeneFactory(method = "PropFitDiffOnln")
 A selection function for genes.
 }
 \description{
-\code{SelectGeneFactory} implements selection
+\code{SelectGeneFactory()} implements selection
              of one of the gene selection functions in this 
              package by specifying a text string.
              The selection fails ungracefully (produces
@@ -23,33 +23,34 @@ A selection function for genes.
              Current support:
 
              \enumerate{
-             \item "Uniform" returns \code{SelectUniform}.
-             \item "UniformP" returns \code{SelectUniformP}.
-             \item "ProportionalOnln" returns \code{SelectPropFitOnln}.
-             \item "Proportional" returns \code{SelectPropFit}.
-             \item "ProportionalM" returns \code{SelectPropFitM}.
-             \item "PropFitDiffOnln" returns \code{SelectPropFitDiffOnln}.
-             \item "PropFitDiff" returns \code{SelectPropFitDiff}.
-             \item "PropFitDiffM" returns \code{SelectPropFitDiffM}.
-             \item "Tournament" returns \code{SelectTournament}.
-             \item "STournament" returns \code{SelectSTournament}.
-             \item "Duel" returns \code{SelectDuel}.
-             \item "LRSelective" returns \code{SelectLRSelective}.
-             \item "LRTSR" returns \code{SelectLinearRankTSR}.
-             \item "SUS" returns a function factory for \code{SelectSUS}.
+             \item "Uniform" returns \code{SelectUniform()}.
+             \item "UniformP" returns \code{SelectUniformP()}.
+             \item "ProportionalOnln" returns \code{SelectPropFitOnln()}.
+             \item "Proportional" returns \code{SelectPropFit()}.
+             \item "ProportionalM" returns \code{SelectPropFitM()}.
+             \item "PropFitDiffOnln" returns \code{SelectPropFitDiffOnln()}.
+             \item "PropFitDiff" returns \code{SelectPropFitDiff()}.
+             \item "PropFitDiffM" returns \code{SelectPropFitDiffM()}.
+             \item "Tournament" returns \code{SelectTournament()}.
+             \item "STournament" returns \code{SelectSTournament()}.
+             \item "Duel" returns \code{SelectDuel()}.
+             \item "LRSelective" returns \code{SelectLRSelective()}.
+             \item "LRTSR" returns \code{SelectLinearRankTSR()}.
+             \item "SUS" returns \code{SelectSUS()}.
              }
 }
 \details{
 If \code{SelectionContinuation()==TRUE} then:
              \enumerate{
-               \item In package xegaPopulation function \code{NextPopulation},
+               \item In package xegaPopulation in
+                     function \code{NextPopulation()},
                      first the functions 
-                       \code{SelectGene} and \code{SelectMate} 
-                       are transformed by \code{TransformSelect} to
+                       \code{SelectGene()} and \code{SelectMate()} 
+                       are transformed by \code{TransformSelect()} to
                        a continuation function with
                      embedded index vector and counter.
-               \item For each call in \code{ReplicateGene},
-                     \code{SelectGene} and \code{SelectMate} 
+               \item For each call in \code{ReplicateGene()},
+                     \code{SelectGene} and \code{SelectMate()} 
                      return the index of the selected gene.
                      }
 }

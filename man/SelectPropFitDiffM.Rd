@@ -17,11 +17,12 @@ SelectPropFitDiffM(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectPropFitDiffM} implements selection
+\code{SelectPropFitDiffM()} implements selection
              proportional to fitness differences.
              It selects a gene from the population
              with a probability proportional to the fitness
              difference to the gene with minimal fitness.
+             The default of the function \code{lF$Offset()} is \code{1}. 
              The fitness of survival of the gene with 
              minimal fitness is set by \code{lF$Eps()} 
              to \code{0.01} per default.
@@ -34,7 +35,7 @@ The index vector of the selected genes.
 
 \section{Note}{
  
-       \code{SelectPopFitDiff} is a dynamic scaling function.
+       \code{SelectPopFitDiff()} is a dynamic scaling function.
 }
 
 \examples{
@@ -53,15 +54,15 @@ Other Selection Functions:
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
-\code{\link{SelectPropFitDiffOnln}()},
+\code{\link{SelectPropFit}()},
 \code{\link{SelectPropFitDiff}()},
+\code{\link{SelectPropFitDiffOnln}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

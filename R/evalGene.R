@@ -8,7 +8,7 @@
 
 #' Generate local functions and objects
 #' 
-#'@description \code{NewlFevalGenes} returns 
+#'@description \code{NewlFevalGenes()} returns 
 #'              the list of functions containing
 #'              a definition of all local objects required for the use
 #'              of evaluation functions. We reference this object 
@@ -36,7 +36,7 @@ NewlFevalGenes<-function(penv)
 
 #' Evaluates a gene in a problem environment
 #'
-#' @description \code{EvalGeneU} evaluates a gene in
+#' @description \code{EvalGeneU()} evaluates a gene in
 #'              a problem environment. 
 #'
 #' @details If the evaluation of the fitness function of the 
@@ -55,7 +55,7 @@ NewlFevalGenes<-function(penv)
 #'                 population.
 #'          }
 #'
-#'          The boolean function \code{lF$ReportEvalErrors} controls
+#'          The boolean function \code{lF$ReportEvalErrors()} controls
 #'          the output of error messages for evaluation failures. 
 #'          Rationale: In grammatical evolution, the standard approach 
 #'          ignores attempts the evaluate incomplete programs.
@@ -102,7 +102,7 @@ return(ng)
 
 #' Evaluates a repaired gene in a problem environment.
 #'
-#' @description \code{EvalGeneR} evaluates a repaired gene in
+#' @description \code{EvalGeneR()} evaluates a repaired gene in
 #'              a problem environment.
 #'
 #' @details If the decoder repairs a gene, the repaired gene 
@@ -136,7 +136,7 @@ ng$fit<-tryCatch(
 	lF$Max()*lF$penv$f(p, ng, lF),
 	error = function(e) 
 	         {if (ReportEvalErrors())
-                  {message("EvalGeneU:")
+                  {message("EvalGeneR:")
                    message(conditionMessage(e))}
 	          NA})
 if (is.na(ng$fit)) # ignore and report!
@@ -149,7 +149,7 @@ return(ng)
 
 #' Evaluates a gene in a deterministic problem environment. 
 #' 
-#' @description \code{EvalGeneDet} evaluates a gene in
+#' @description \code{EvalGeneDet()} evaluates a gene in
 #'              a problem environment if it has not been evaluated yet.
 #'              The repeated evaluations of a gene are omitted.
 #'
@@ -181,7 +181,7 @@ if (gene$evaluated) gene else EvalGeneU(gene, lF)
 
 #' Evaluates a gene in a stochastic problem environment. 
 #' 
-#' @description \code{EvalGeneStoch} evaluates a gene in
+#' @description \code{EvalGeneStoch()} evaluates a gene in
 #'              a stochastic problem environment.
 #'
 #' @details In a stochastic problem environment, the expected fitness
@@ -275,7 +275,7 @@ testEvalGeneStoch<-function(gene, lF, rep)
 
 #' Configure the evaluation function of a genetic algorithm.
 #' 
-#' @description \code{EvalGeneFactory} implements the selection 
+#' @description \code{EvalGeneFactory()} implements the selection 
 #'              of one of the evaluation functions for a gene 
 #'              in this package by specifying a text string.
 #'              The selection fails ungracefully (produces
@@ -339,7 +339,7 @@ return(f)
 
 #' Evaluate a gene
 #'
-#' @description \code{EvalGene} is the abstract function which evaluates 
+#' @description \code{EvalGene()} is the abstract function which evaluates 
 #'              a gene. 
 #'      
 #' @details For minimization problems, the fitness value 

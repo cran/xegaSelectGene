@@ -25,7 +25,7 @@ A function with a  state which consists of
         The function supports the same interface as a selection function.
 }
 \description{
-\code{TransformSelect} precomputes 
+\code{TransformSelect()} precomputes 
              the indices of genes to be selected and
              converts the selection function into an access function to the 
              next index. 

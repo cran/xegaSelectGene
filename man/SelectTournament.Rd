@@ -17,13 +17,14 @@ SelectTournament(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectTournament} implements selection
+\code{SelectTournament()} implements selection
              by doing a tournament between \code{lF$TournamentSize()} 
              randomly selected genes. The best gene always wins.
              The default of \code{lF$TournamentSize()} is \code{2}. This 
              is the version with the least selection pressure.
              
-             \code{lF$TournamentSize} must be less than the population size.
+             \code{lF$TournamentSize()} must be less 
+                   than the population size.
 }
 \examples{
 fit<-sample(10, 15, replace=TRUE)
@@ -35,15 +36,15 @@ Other Selection Functions:
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

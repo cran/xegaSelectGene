@@ -26,7 +26,7 @@ Fitness is transformed by a power function
               \item larger than 1: Selection pressure is increased.
               \item 0:  Fitness is constant. Random selection.
               \item smaller than 0: Fitness is 
-             \code{1/k}.
+             \code{1/(fit^k)}.
                      }
 }
 \details{

@@ -17,7 +17,7 @@ SelectSUS(fit, lF, size = 1)
 The index vector of the selected genes.
 }
 \description{
-\code{SelectSUS} implements selection
+\code{SelectSUS()} implements selection
      by Baker's stochastic universal sampling method. 
      SUS is a strictly sequential algorithm 
      which has zero bias and minimal spread.
@@ -42,15 +42,15 @@ Other Selection Functions:
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

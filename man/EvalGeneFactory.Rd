@@ -31,7 +31,7 @@ EvalGeneFactory(method = "EvalGeneU")
 An evaluation function.
 }
 \description{
-\code{EvalGeneFactory} implements the selection 
+\code{EvalGeneFactory()} implements the selection 
              of one of the evaluation functions for a gene 
              in this package by specifying a text string.
              The selection fails ungracefully (produces

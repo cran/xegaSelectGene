@@ -21,7 +21,7 @@ The dispersion ratio is computed as
      the ratio \code{DM(t)/DM(k)}
      where \code{DM(t)} is the dispersion measure of period t and 
      \code{DM(k)} the dispersion measure of period \code{max(1, (t-k))}.
-     \code{k} is specified by \code{lF$ScalingDelay}.
+     \code{k} is specified by \code{lF$ScalingDelay()}.
 }
 \details{
 The dispersion ratio may take unreasonably high and low values

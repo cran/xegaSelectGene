@@ -12,7 +12,7 @@
 #'
 #' @details The factory contains examples of all functions 
 #'          which form the interface of a problem environment to
-#'          the simple genetic algorithm with binary-coded genes
+#'          the genetic algorithm with binary-coded genes
 #'          of package \code{xega}.
 #'
 #' @return A problem environment represented as a list of functions:

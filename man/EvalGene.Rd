@@ -16,7 +16,7 @@ the \code{xegaX} package).}
 A gene.
 }
 \description{
-\code{EvalGene} is the abstract function which evaluates 
+\code{EvalGene()} is the abstract function which evaluates 
              a gene.
 }
 \details{

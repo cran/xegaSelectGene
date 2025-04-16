@@ -11,18 +11,22 @@ ScalingFactory(method = "NoScaling")
 \itemize{ 
  \item "NoScaling": Identity (Default).       
  \item "ConstantScaling": \code{fit^k} with constant exponent.
-       Function \code{ConstantScaling}.
+       Function \code{ConstantScaling()}.
  \item "ThresholdScaling": 
+ \itemize{
+ \item 
  If the dispersion ratio is larger than \code{1+threshold}, 
  use a constant scaling exponent with a value below 1 
  (decrease of selection pressure).
-       Function \code{ThresholdScaling}.
+       Function \code{ThresholdScaling()}.
  \item If the dispersion ratio is lower than \code{1-threshold}, 
  use a constant scaling exponent with a value above 1
  (increase of selection pressure).
+ \item Else use a scaling exponent of 1. This means no scaling.
+ }
  \item "ContinuousScaling": Use weighted dispersion ratio 
  as scaling exponent.
- Function \code{ContinuousScaling}.
+ Function \code{ContinuousScaling()}.
  }}
 }
 \value{

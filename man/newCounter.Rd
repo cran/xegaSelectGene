@@ -7,7 +7,7 @@
 newCounter()
 }
 \value{
-\code{newCounter()} returns a counter function.
+\code{newCounter()} returns \code{a_counter_function()}.
 
 \code{a_counter_function()} returns the 
          number of times it has been called
@@ -17,14 +17,14 @@ newCounter()
         of the \code{a_counter_function}.
 }
 \description{
-\code{newCounter} sets up a counter object with one 
+\code{newCounter()} sets up a counter object with one 
              internal state variable, namely \code{count} 
              to count the number of counter calls.
 }
 \details{
 Generate a counter: 
-            \code{a<-newCounter()} sets up the counter \code{a}.
-            The counter \code{a} supports three methods:
+            \code{a<-newCounter()} sets up the counter \code{a()}.
+            The counter \code{a()} supports three methods:
       \enumerate{
        \item \code{a()} or 
              \code{a("Measure")} or 

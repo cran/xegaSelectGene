@@ -13,7 +13,7 @@
 
 #' Test a gene selection function 
 #'
-#' @description \code{testSelectGene} implements 
+#' @description \code{testSelectGene()} implements 
 #'              testing a selection function.
 #'              It collects the results of the repeated execution 
 #'              of the selection function
@@ -21,7 +21,7 @@
 #' 
 #' @param fit             Fitness vector.
 #' @param method          String specifying the selection function. 
-#'                        See \code{SelectGeneFactory}.
+#'                        See \code{SelectGeneFactory()}.
 #' @param howOften        Integer. 
 #' @param lF              Local configuration. 
 #' @param continuation    Convert to index function? 
@@ -158,7 +158,7 @@ selectBenchmark<-function(method="Uniform", continuation=TRUE, limit=c(10, 100, 
 #' @section Warning:
 #'    The time to run the function for \code{lim>6} explodes 
 #'    for all benchmark functions with higher than linear complexity.
-#'    (e.g. \code{PropFit}, \code{PropFitdiff}, and \code{Tournament}).
+#'    (e.g. \code{PropFit()}, \code{PropFitdiff()}, and \code{Tournament()}).
 #' 
 #' @return A data frame sorted in ascending order of time of last column. 
 #'  

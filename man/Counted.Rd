@@ -15,7 +15,7 @@ Counted(FUN, counter)
 A counted function.
 }
 \description{
-\code{Counted} takes two functions as arguments: 
+\code{Counted()} takes two functions as arguments: 
     The function whose call frequency 
     should be measured and a counter object created by \code{newCounter()}.
     It returns a counted function.

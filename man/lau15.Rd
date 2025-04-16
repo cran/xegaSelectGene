@@ -5,7 +5,7 @@
 \alias{lau15}
 \title{The problem environment \code{lau15} for a traveling salesman problem.}
 \format{
-An object of class \code{list} of length 12.
+An object of class \code{list} of length 14.
 }
 \usage{
 lau15

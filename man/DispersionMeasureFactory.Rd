@@ -26,7 +26,7 @@ A function which computes the dispersion measure from the vector of
         of package \code{xegaPopulation}.
 }
 \description{
-\code{DispersionMeasureFactory} returns a function 
+\code{DispersionMeasureFactory()} returns a function 
 for the dispersion measure as specified by a label.
     If an invalid label is 
     specified, the configuration fails.

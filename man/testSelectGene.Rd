@@ -17,7 +17,7 @@ testSelectGene(
 \item{fit}{Fitness vector.}
 
 \item{method}{String specifying the selection function. 
-See \code{SelectGeneFactory}.}
+See \code{SelectGeneFactory()}.}
 
 \item{howOften}{Integer.}
 
@@ -39,7 +39,7 @@ into a quasi-continuation function is printed on the console.}
         }
 }
 \description{
-\code{testSelectGene} implements 
+\code{testSelectGene()} implements 
              testing a selection function.
              It collects the results of the repeated execution 
              of the selection function

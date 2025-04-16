@@ -2,7 +2,7 @@
 % Please edit documentation in R/scaling.R
 \name{ContinuousScaleFitness}
 \alias{ContinuousScaleFitness}
-\title{Dispersion Ratio Based Fitness Scaling.}
+\title{Dispersion Ratio Based Continuous Fitness Scaling.}
 \usage{
 ContinuousScaleFitness(fit, lF)
 }
@@ -15,7 +15,8 @@ ContinuousScaleFitness(fit, lF)
 Scaled fitness vector.
 }
 \description{
-Dispersion Ratio Based Fitness Scaling.
+The scaling exponent is the product of 
+             \code{lF$RDMWeight()} and \code{lF$RDM()}.
 }
 \examples{
 lF<-list()

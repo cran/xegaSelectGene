@@ -15,7 +15,7 @@ EvalGeneDet(gene, lF)
 A gene (with \code{$evaluated==TRUE}).
 }
 \description{
-\code{EvalGeneDet} evaluates a gene in
+\code{EvalGeneDet()} evaluates a gene in
              a problem environment if it has not been evaluated yet.
              The repeated evaluations of a gene are omitted.
 }
@@ -36,9 +36,9 @@ EvalGeneDet(g2a, lF)
 }
 \seealso{
 Other Evaluation Functions: 
+\code{\link{EvalGene}()},
 \code{\link{EvalGeneR}()},
 \code{\link{EvalGeneStoch}()},
-\code{\link{EvalGeneU}()},
-\code{\link{EvalGene}()}
+\code{\link{EvalGeneU}()}
 }
 \concept{Evaluation Functions}

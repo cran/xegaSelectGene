@@ -17,7 +17,7 @@ SelectLRSelective(fit, lF, size = 1)
 The index vector of selected genes.
 }
 \description{
-\code{SelectLRSelective} implements selection
+\code{SelectLRSelective()} implements selection
      by Whitley's linear rank selection with selective pressure 
      for the GENITOR algorithm. 
      See Whitley, Darrell (1989), p. 121.
@@ -46,16 +46,16 @@ Why Rank-Based Allocation of Reproductive Trials is Best.
 Other Selection Functions: 
 \code{\link{SelectDuel}()},
 \code{\link{SelectLinearRankTSR}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

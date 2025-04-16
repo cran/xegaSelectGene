@@ -15,7 +15,7 @@ Tournament(fit, lF)
 Index of the best candidate.
 }
 \description{
-\code{Tournament} is implemented in two steps:
+\code{Tournament()} is implemented in two steps:
 \enumerate{
 \item
 A subset of size k of the population is selected with uniform probability.
@@ -24,7 +24,8 @@ A gene is selected with probability proportional to fitness.
 }
 }
 \details{
-In each generation, the worst gene in a population dies.
+In each generation, the worst \code{k-1} genes 
+         in a population do not survive.
 }
 \examples{
 fit<-sample(10, 15, replace=TRUE)

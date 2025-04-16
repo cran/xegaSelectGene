@@ -8,10 +8,10 @@
 
 #' Generate a TSP problem environment
 #'
-#' @description \code{newTSP} generates the problem environment 
+#' @description \code{newTSP()} generates the problem environment 
 #'              for a traveling salesman problem (TSP).
 #'
-#' @details \code{newTSP} provides several local permutation 
+#' @details \code{newTSP()} provides several local permutation 
 #'        improvement heuristics: 
 #'        a greedy path of length k starting
 #'        from city i, 
@@ -80,9 +80,17 @@
 #'                         which does not improve the solution.
 #'
 #'  \item 
-#'  \code{$solution()}         known optimal solution
+#'  \code{$solution()}         known optimal solution.
 #'  \item 
-#'  \code{$path()}             known optimal round trip 
+#'  \code{$path()}             known optimal round trip.
+#'  \item 
+#'  \code{$max()}            \code{FALSE}.
+#'  \item {$globalOptimum()}  a named list with the following elements:
+#'     \itemize{
+#'     \item \code{$param}    the optimal permutation.
+#'     \item \code{$value}    the known optimal solution.
+#'     \item \code{$is.minimum}  \code{TRUE}. 
+#'     }    
 #'  }
 #'
 #' @examples
@@ -118,23 +126,28 @@ newTSP<-function(D, Name, Cities=NA, Solution=NA, Path=NA)
 { d<-dim(D)
 if (!length(d)==2) stop("n times n matrix expected")  
 if (!d[1]==d[2]) stop("n times n matrix expected")  
+self<-list()
 # constant functions
-name<-parm(Name)
-genelength<-parm(d[1])
-dist<-parm(D)
+self$name<-parm(Name)
+self$genelength<-parm(d[1])
+self$dist<-parm(D)
 #### 
 if (all(is.na(Cities))) {cit<-1:d[1]} 
 else {if (!length(Cities)==d[1]) {stop("List of n cities expected")} 
       else {cit<-Cities}}
-cities<-parm(cit)
+self$cities<-parm(cit)
 if (!all(is.na(Path)))  
    {if (!length(Path)==d[1]) {stop("Path of n cities expected")}}
 if (!all(is.na(Path)))  
    { if (!all(Path %in% (1:d[1]))) {stop("Permutation of n integers expected")}}
-solution<-parm(Solution)
-path<-parm(Path)
+self$solution<-parm(Solution)
+self$path<-parm(Path)
+self$max<-function() {return(FALSE)}
+self$globalOptimum<-function()
+  {l<-list()
+  l$param<-Path; l$value<-Solution;l$is.minimum<-TRUE;return(l)}
 # f
-f<-function(permutation, gene=0, lF=0, tour=TRUE)
+self$f<-function(permutation, gene=0, lF=0, tour=TRUE)
 { cost<-0
   l<-length(permutation)-1
   for (i in 1:l) 
@@ -142,7 +155,7 @@ f<-function(permutation, gene=0, lF=0, tour=TRUE)
   if (tour==TRUE) {cost<-cost+self$dist()[permutation[l+1], permutation[1]]}
   return(cost)}
 # show. p is a path.
-show<-function(p)
+self$show<-function(p)
 { l<-length(p)-1
   pl<-0
   for (i in 1:l)
@@ -155,7 +168,7 @@ show<-function(p)
    cat((l+1), "From:", self$cities()[p[l+1]], " to ", self$cities()[p[1]], 
        " Distance: ", d, " ", pl, "\n") }
 # greedy
-greedy<-function(startPosition, k)
+self$greedy<-function(startPosition, k)
 { # local functions
    without<-function(set, element) {set[!set==element]}
   # v a vector
@@ -172,7 +185,7 @@ greedy<-function(startPosition, k)
     indexSet<-without(indexSet, nextPosition)}
   return(path)}
 
-kBestGreedy<-function(k, tour=TRUE)
+self$kBestGreedy<-function(k, tour=TRUE)
 { l<-self$genelength()
   best<-self$greedy(1, k)
   costBest<-self$f(best, tour)
@@ -186,7 +199,7 @@ kBestGreedy<-function(k, tour=TRUE)
   return(best)
 }
 
-rnd2Opt<-function(permutation, maxTries=5)
+self$rnd2Opt<-function(permutation, maxTries=5)
 {
 
 randomSplit<-function(l)
@@ -210,7 +223,7 @@ randomSplit<-function(l)
 	return(permutation)
 }
 
-LinKernighan<-function(permutation, maxTries=5, show=FALSE)
+self$LinKernighan<-function(permutation, maxTries=5, show=FALSE)
 {
 	epsilon<-parm(0.000001)
 	newpermutation<-permutation; i<-1
@@ -226,11 +239,7 @@ LinKernighan<-function(permutation, maxTries=5, show=FALSE)
 	return(newpermutation)
 }
 
-self=list(name=name, genelength=genelength, dist=dist, cities=cities, f=f,
-          solution=solution, path=path, show=show, 
-	  greedy=greedy, kBestGreedy=kBestGreedy,
-          rnd2Opt=rnd2Opt, LinKernighan=LinKernighan)
-# The next 6 statements are needed to evaluate the promises
+# The next 8 statements are needed to evaluate the promises
 # and to force a static binding despite lazy evaluation of
 # arguments.
 a<-self$name()
@@ -239,6 +248,8 @@ a<-self$dist()
 a<-self$cities()
 a<-self$solution()
 a<-self$path()
+a<-self$max()
+a<-self$globalOptimum()
 return(self) }
 
 #

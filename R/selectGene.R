@@ -6,9 +6,6 @@
 #                 Independent of gene representation.
 #          Package: selectGene
 #
-#  TODO: 
-#  - Annealing like acceptance functions and temperature.
-#
 
 #
 # Part I.1. Function Factories for Constants.
@@ -17,7 +14,7 @@
 
 #' Factory for constants
 #' 
-#'@description \code{parm} builds a constant function for \code{x}. 
+#'@description \code{parm()} builds a constant function for \code{x}. 
 #'             See Wickham (2019).
 #' 
 #'@references  Wickham, Hadley (2019): Advanced R, CRC Press, Boca Raton.
@@ -36,7 +33,7 @@ parm<-function(x){function() {return(x)}}
 
 #' Generate local functions and objects.
 #' 
-#'@description \code{NewlFselectGenes} returns 
+#'@description \code{NewlFselectGenes()} returns 
 #'              the list of functions which contains 
 #'              a definition of all local objects required for the use
 #'              of selection functions. We reference this object 
@@ -73,15 +70,16 @@ NewlFselectGenes<-function()
 
 #' Selection proportional to fitness O(n ln(n)).
 #'
-#' @description \code{SelectPropFitOnln} implements selection
+#' @description \code{SelectPropFitOnln()} implements selection
 #'              proportional to fitness. Negative fitness
 #'              vectors are shifted to \eqn{R^+}.
-#'              The default of the function \code{lf$Offset} is \code{1}. 
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              Holland's schema theorem uses this selection function.
 #'              See John Holland (1975) for further information.
 #'
 #'  @details This is a fast implementation with equivalent results 
-#'           to the functions \code{SelectPropFit} and \code{SelectPropFitM}.
+#'           to the functions \code{SelectPropFit()} and 
+#'           \code{SelectPropFitM()}.
 #'           Its runtime is \eqn{O(n . ln(n))}.
 #'
 #' @section Credits:
@@ -128,10 +126,10 @@ function(fit, lF, size=1)
 
 #' Selection proportional to fitness \eqn{O(n^2)}.
 #'
-#' @description \code{SelectPropFit} implements selection
+#' @description \code{SelectPropFit()} implements selection
 #'              proportional to fitness. Negative fitness
 #'              vectors are shifted to \eqn{R^+}.
-#'              The default of the function \code{lf$Offset} is \code{1}. 
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              Holland's schema theorem uses this selection function.
 #'              See John Holland (1975) for further information.
 #'
@@ -170,10 +168,10 @@ function(fit, lF, size=1)
 
 #' Selection proportional to fitness (vector/matrix).
 #'
-#' @description \code{SelectPropFitM} implements selection
+#' @description \code{SelectPropFitM()} implements selection
 #'              proportional to fitness. Negative fitness
 #'              vectors are shifted to \eqn{R^+}.
-#'              The default of the function \code{lf$Offset} is \code{1}. 
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              Holland's schema theorem uses this selection function.
 #'              See John Holland (1975) for further information.
 #'
@@ -209,17 +207,21 @@ function(fit, lF, size=1)
 
 #' Selection proportional to fitness differences O(n ln(n)).
 #'
-#' @description \code{SelectPropFitDiffOnln} implements selection
+#' @description \code{SelectPropFitDiffOnln()} implements selection
 #'              proportional to fitness differences. Negative fitness
 #'              vectors are shifted to \eqn{R^+}.
-#'              The default of the function \code{lf$Offset} is \code{1}. 
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              Holland's schema theorem uses this selection function.
 #'              See John Holland (1975) for further information.
 #'
 #' @details This is a fast implementation which gives exactly the same 
-#'           results as the functions \code{SelectPropFitDiff} 
-#'           and \code{SelectPropDiffFitM}.
+#'           results as the functions \code{SelectPropFitDiff()} 
+#'           and \code{SelectPropDiffFitM()}.
 #'           Its runtime is \eqn{O(n . ln(n))}.
+#'
+#'          An epsilon (\code{lF$Eps()}) is added to the fitness 
+#'          difference vector. This guarantees numerical stability,
+#'          even if all genes in the population have the same fitness. 
 #'
 #' @section Credits:
 #'          The code of this function has been adapted by 
@@ -251,7 +253,7 @@ SelectPropFitDiffOnln<-
 function(fit, lF, size=1)
 { minimum<-min(fit)
   if (minimum<= 0) {fit<-lF$Offset()+abs(minimum)+fit}
-  fitdiff<-fit-minimum
+  fitdiff<-lF$Eps()+fit-minimum
   weights<-fitdiff/sum(fitdiff)
   randoms<-sort(stats::runif(size))
   index<-rep(0, size)
@@ -269,11 +271,12 @@ function(fit, lF, size=1)
 
 #' Selection proportional to fitness differences. 
 #'
-#' @description \code{SelectPropFitDiff} implements selection
+#' @description \code{SelectPropFitDiff()} implements selection
 #'              proportional to fitness differences.
 #'              It selects a gene out of the population
 #'              with a probability proportional to the fitness
 #'              difference to the gene with minimal fitness.
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              The fitness of survival of the gene with 
 #'              minimal fitness is set by \code{lF$Eps()} 
 #'              to \code{0.01} per default.
@@ -285,7 +288,7 @@ function(fit, lF, size=1)
 #'      (ISBN:978-3-7908-0830-X)
 #'
 #' @section Note: 
-#'        \code{SelectPopFitDiff} is a dynamic scaling function.
+#'        \code{SelectPropFitDiff()} is a dynamic scaling function.
 #'        Complexity: \eqn{O(n^2)}.
 #'
 #' @param fit    Fitness vector.
@@ -306,7 +309,7 @@ SelectPropFitDiff<-
 function(fit, lF, size=1)
 { minimum<-min(fit)
   if (minimum<= 0) {fit<-lF$Offset()+abs(minimum)+fit}
-  fitdiff<-fit-minimum
+  fitdiff<-lF$Eps()+fit-minimum
   slots<-cumsum(fitdiff)/sum(fitdiff)
   index<-rep(0, size)
   for (i in (1:size))
@@ -316,11 +319,12 @@ function(fit, lF, size=1)
 
 #' Selection proportional to fitness differences. 
 #'
-#' @description \code{SelectPropFitDiffM} implements selection
+#' @description \code{SelectPropFitDiffM()} implements selection
 #'              proportional to fitness differences.
 #'              It selects a gene from the population
 #'              with a probability proportional to the fitness
 #'              difference to the gene with minimal fitness.
+#'              The default of the function \code{lF$Offset()} is \code{1}. 
 #'              The fitness of survival of the gene with 
 #'              minimal fitness is set by \code{lF$Eps()} 
 #'              to \code{0.01} per default.
@@ -335,7 +339,7 @@ function(fit, lF, size=1)
 #'           <978-3-7908-0830-X>
 #'
 #' @section Note: 
-#'        \code{SelectPopFitDiff} is a dynamic scaling function.
+#'        \code{SelectPopFitDiff()} is a dynamic scaling function.
 #'
 #' @param fit    Fitness vector.
 #' @param lF     Local configuration.
@@ -359,7 +363,7 @@ outer((cumsum(lF$Eps()+(fit-min(fit)))/(lF$Eps()+sum(fit-min(fit)))),
 
 #' Selection with uniform probability.
 #'
-#' @description \code{SelectUniform} implements selection
+#' @description \code{SelectUniform()} implements selection
 #'              by choosing a gene with equal probability. 
 #'
 #' @details  This selection function is useful:
@@ -391,7 +395,7 @@ function(fit, lF, size=1)
 
 #' Selection with uniform probability without replacement.
 #'
-#' @description \code{SelectUniformP} implements selection
+#' @description \code{SelectUniformP()} implements selection
 #'              by choosing a gene with equal probability without 
 #'              replacement.
 #'              Usage:
@@ -438,7 +442,7 @@ else
 
 #' Deterministic duel. 
 #' 
-#' @description \code{SelectDuel} implements selection
+#' @description \code{SelectDuel()} implements selection
 #'              by a tournament between 2
 #'              randomly selected genes. The best gene always wins.
 #'              This is the version of tournament selection 
@@ -474,7 +478,7 @@ return(c(i1, i2))
 
 #' Deterministic tournament of size \code{k}.
 #' 
-#' @description \code{Tournament} is implemented in two steps:
+#' @description \code{Tournament()} is implemented in two steps:
 #' \enumerate{
 #' \item
 #' A subset of size k of the population is selected with uniform probability.
@@ -482,7 +486,8 @@ return(c(i1, i2))
 #' A gene is selected with probability proportional to fitness.
 #' }
 #'
-#' @details In each generation, the worst gene in a population dies.
+#' @details In each generation, the worst \code{k-1} genes 
+#'          in a population do not survive.
 #'
 #' @param fit    Fitness vector.
 #' @param lF     Local configuration.
@@ -499,7 +504,7 @@ Tournament<-function(fit, lF)
 
 #' Stochastic tournament of size \code{k}.
 #' 
-#' @description \code{STournament} is implemented in two steps:
+#' @description \code{STournament()} is implemented in two steps:
 #' \enumerate{
 #' \item
 #' A subset of size k of the population is selected with uniform probability.
@@ -522,13 +527,14 @@ STournament<-function(fit, lF)
 
 #' Tournament selection. 
 #'
-#' @description \code{SelectTournament} implements selection
+#' @description \code{SelectTournament()} implements selection
 #'              by doing a tournament between \code{lF$TournamentSize()} 
 #'              randomly selected genes. The best gene always wins.
 #'              The default of \code{lF$TournamentSize()} is \code{2}. This 
 #'              is the version with the least selection pressure.
 #'              
-#'              \code{lF$TournamentSize} must be less than the population size.
+#'              \code{lF$TournamentSize()} must be less 
+#'                    than the population size.
 #'
 #' @param fit Fitness vector.
 #' @param lF  Local configuration.
@@ -553,7 +559,7 @@ return(index)
 
 #' Stochastic tournament selection. 
 #'
-#' @description \code{SelectSTournament} implements selection
+#' @description \code{SelectSTournament()} implements selection
 #'              through a stochastic tournament between 
 #'               \code{lF$TournamentSize()} 
 #'              randomly selected genes. A gene wins a tournament 
@@ -562,7 +568,8 @@ return(index)
 #'              A tournament
 #'              with 2 participants has the least selection pressure.
 #'              
-#'              \code{lF$TournamentSize} must be less than the population size.
+#'              \code{lF$TournamentSize()} must be less 
+#'                    than the population size.
 #'
 #' @param fit     Fitness vector.
 #' @param lF      Local configuration.
@@ -587,7 +594,7 @@ return(index)
 
 #' Stochastic universal sampling.
 #'
-#' @description \code{SelectSUS} implements selection
+#' @description \code{SelectSUS()} implements selection
 #'      by Baker's stochastic universal sampling method. 
 #'      SUS is a strictly sequential algorithm 
 #'      which has zero bias and minimal spread.
@@ -629,7 +636,7 @@ return(index[sample(length(index), size=size, replace=(size>length(fit)))]) }
 
 #' Linear rank selection with selective pressure.
 #'
-#' @description \code{SelectLRSelective} implements selection
+#' @description \code{SelectLRSelective()} implements selection
 #'      by Whitley's linear rank selection with selective pressure 
 #'      for the GENITOR algorithm. 
 #'      See Whitley, Darrell (1989), p. 121.
@@ -668,18 +675,18 @@ f<-sort(fit, decreasing=TRUE, index.return=TRUE)
 return(f$ix[as.integer(i)])
 }
 
-#' Linear rank selection.
+#' Linear rank selection with interpolated target sampling rates.
 #'
-#' @description \code{SelectLinearRankTSR} implements selection
+#' @description \code{SelectLinearRankTSR()} implements selection
 #'      with interpolated target sampling rates.
 #'               
 #' @details The target sampling rate is a linear interpolation 
-#'          between \code{lF$MaxTSR} and \code{Min<-2-lF$MaxTSR},
+#'          between \code{lF$MaxTSR()} and \code{Min<-2-lF$MaxTSR()},
 #'          because the sum of the target sampling rates is $n$. 
 #'          The target sampling rates are computed and used as a fitness
 #'          vector for stochastic universal sampling algorithm
-#'          implemented by \code{SelectSUS}.
-#'          \code{lF$MaxTSR} should be in [1.0, 2.0].
+#'          implemented by \code{SelectSUS()}.
+#'          \code{lF$MaxTSR()} should be in [1.0, 2.0].
 #'               
 #'          TODO: More efficient implementation. We use two sorts!
 #'
@@ -721,7 +728,7 @@ return(SelectSUS(ftsr, lF, size))
 
 #' Convert a selection function into a continuation.
 #' 
-#' @description \code{TransformSelect} precomputes 
+#' @description \code{TransformSelect()} precomputes 
 #'              the indices of genes to be selected and
 #'              converts the selection function into an access function to the 
 #'              next index. 
@@ -801,7 +808,7 @@ TransformSelect<-function(fit, lF, SelectFUN)
 
 #' Configure the selection function of a genetic algorithm.
 #'
-#' @description \code{SelectGeneFactory} implements selection
+#' @description \code{SelectGeneFactory()} implements selection
 #'              of one of the gene selection functions in this 
 #'              package by specifying a text string.
 #'              The selection fails ungracefully (produces
@@ -811,33 +818,34 @@ TransformSelect<-function(fit, lF, SelectFUN)
 #'              Current support:
 #' 
 #'              \enumerate{
-#'              \item "Uniform" returns \code{SelectUniform}.
-#'              \item "UniformP" returns \code{SelectUniformP}.
-#'              \item "ProportionalOnln" returns \code{SelectPropFitOnln}.
-#'              \item "Proportional" returns \code{SelectPropFit}.
-#'              \item "ProportionalM" returns \code{SelectPropFitM}.
-#'              \item "PropFitDiffOnln" returns \code{SelectPropFitDiffOnln}.
-#'              \item "PropFitDiff" returns \code{SelectPropFitDiff}.
-#'              \item "PropFitDiffM" returns \code{SelectPropFitDiffM}.
-#'              \item "Tournament" returns \code{SelectTournament}.
-#'              \item "STournament" returns \code{SelectSTournament}.
-#'              \item "Duel" returns \code{SelectDuel}.
-#'              \item "LRSelective" returns \code{SelectLRSelective}.
-#'              \item "LRTSR" returns \code{SelectLinearRankTSR}.
-#'              \item "SUS" returns a function factory for \code{SelectSUS}.
+#'              \item "Uniform" returns \code{SelectUniform()}.
+#'              \item "UniformP" returns \code{SelectUniformP()}.
+#'              \item "ProportionalOnln" returns \code{SelectPropFitOnln()}.
+#'              \item "Proportional" returns \code{SelectPropFit()}.
+#'              \item "ProportionalM" returns \code{SelectPropFitM()}.
+#'              \item "PropFitDiffOnln" returns \code{SelectPropFitDiffOnln()}.
+#'              \item "PropFitDiff" returns \code{SelectPropFitDiff()}.
+#'              \item "PropFitDiffM" returns \code{SelectPropFitDiffM()}.
+#'              \item "Tournament" returns \code{SelectTournament()}.
+#'              \item "STournament" returns \code{SelectSTournament()}.
+#'              \item "Duel" returns \code{SelectDuel()}.
+#'              \item "LRSelective" returns \code{SelectLRSelective()}.
+#'              \item "LRTSR" returns \code{SelectLinearRankTSR()}.
+#'              \item "SUS" returns \code{SelectSUS()}.
 #'              }
 #'
 #' @details
 #'             If \code{SelectionContinuation()==TRUE} then:
 #'              \enumerate{
-#'                \item In package xegaPopulation function \code{NextPopulation},
+#'                \item In package xegaPopulation in
+#'                      function \code{NextPopulation()},
 #'                      first the functions 
-#'                        \code{SelectGene} and \code{SelectMate} 
-#'                        are transformed by \code{TransformSelect} to
+#'                        \code{SelectGene()} and \code{SelectMate()} 
+#'                        are transformed by \code{TransformSelect()} to
 #'                        a continuation function with
 #'                      embedded index vector and counter.
-#'                \item For each call in \code{ReplicateGene},
-#'                      \code{SelectGene} and \code{SelectMate} 
+#'                \item For each call in \code{ReplicateGene()},
+#'                      \code{SelectGene} and \code{SelectMate()} 
 #'                      return the index of the selected gene.
 #'                      }
 #'

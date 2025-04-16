@@ -24,7 +24,7 @@ A gene with the elements
   }
 }
 \description{
-\code{EvalGeneStoch} evaluates a gene in
+\code{EvalGeneStoch()} evaluates a gene in
              a stochastic problem environment.
 }
 \details{
@@ -59,9 +59,9 @@ g5
 }
 \seealso{
 Other Evaluation Functions: 
+\code{\link{EvalGene}()},
 \code{\link{EvalGeneDet}()},
 \code{\link{EvalGeneR}()},
-\code{\link{EvalGeneU}()},
-\code{\link{EvalGene}()}
+\code{\link{EvalGeneU}()}
 }
 \concept{Evaluation Functions}

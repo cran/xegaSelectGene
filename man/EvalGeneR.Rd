@@ -15,7 +15,7 @@ EvalGeneR(gene, lF)
 A gene (with \code{$evaluated==TRUE}).
 }
 \description{
-\code{EvalGeneR} evaluates a repaired gene in
+\code{EvalGeneR()} evaluates a repaired gene in
              a problem environment.
 }
 \details{
@@ -34,9 +34,9 @@ EvalGeneR(g2, lF)
 EvalGeneU
 
 Other Evaluation Functions: 
+\code{\link{EvalGene}()},
 \code{\link{EvalGeneDet}()},
 \code{\link{EvalGeneStoch}()},
-\code{\link{EvalGeneU}()},
-\code{\link{EvalGene}()}
+\code{\link{EvalGeneU}()}
 }
 \concept{Evaluation Functions}

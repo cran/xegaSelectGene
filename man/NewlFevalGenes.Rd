@@ -13,7 +13,7 @@ NewlFevalGenes(penv)
 The local configuration. A list of functions.
 }
 \description{
-\code{NewlFevalGenes} returns 
+\code{NewlFevalGenes()} returns 
              the list of functions containing
              a definition of all local objects required for the use
              of evaluation functions. We reference this object 

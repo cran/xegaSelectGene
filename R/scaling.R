@@ -20,7 +20,7 @@
 #'               \item larger than 1: Selection pressure is increased.
 #'               \item 0:  Fitness is constant. Random selection.
 #'               \item smaller than 0: Fitness is 
-#'              \code{1/k}.
+#'              \code{1/(fit^k)}.
 #'                      }
 #'              
 #' @details Power functions are used for contrast sharpening or softening
@@ -78,20 +78,28 @@ ScaleFitness<-function(fit, k, lF)
 ScalingFitness<-function(fit, lF) 
 { ScaleFitness(fit, lF$ScalingExp(), lF)}
 
-#' Dispersion Ratio Based Fitness Scaling. 
+#' Dispersion Ratio Based Threshold Fitness Scaling.  
 #'
 #' @description Fitness is transformed by a power function 
-#'              \code{fit^lF$ScalingExp}.
-#'              If \code{lF$ScalingExp} is 
-#'              \itemize{
-#'               \item less than 1: Selection pressure is decreased.
-#'               \item 1:  Selection pressure remains constant.
-#'               \item larger than 1: Selection pressure is increased.
-#'               \item 0:  Fitness is constant. Random selection.
-#'               \item smaller than 1: Fitness is 
-#'              \code{1/fit^lF$ScalingExp}.
-#'                      }
-#'              
+#'              with a scaling exponent.
+#'              The choice of the scaling exponent depends on 
+#'              the ratio of the dispersion measures of the 
+#'              current and the previous population fitness.
+#'           
+#' @details  The scaling exponent is selected by the following rule:
+#'           \itemize{ 
+#'           \item If \code{lF$RDM()>1+lF$ScalingThreshold()} 
+#'                 then choose the scaling exponent \code{lF$ScalingExp()}.   
+#'                 The scaling exponent should be larger than 1 to increase 
+#'                 the selection pressure.
+#'           \item If \code{lF$RDM()<1+lF$SCalingThreshold}
+#'           and \code{lF$RDM()>1-lF$SCalingThreshold}, the fitness is not scaled.
+#'           \item If \code{lF$RDM()<1-lF$SCalingThreshold}
+#'                 then choose the scaling exponent \code{lF$ScalingExp2()}.   
+#'                 The scaling exponent should be smaller than 1 to decrease 
+#'                 the selection pressure.
+#'           }              
+#'
 #' @param fit   Fitness vector.
 #' @param lF    Local configuration.
 #' 
@@ -105,8 +113,8 @@ ScalingFitness<-function(fit, lF)
 #' lF$Offset<-parm(0.0001)
 #' lF$ScalingThreshold<-parm(0.05)
 #' lF$RDM<-parm(1.0)
-#' lF$ScalingExp<-parm(0.5)
-#' lF$ScalingExp2<-parm(2)
+#' lF$ScalingExp<-parm(2.0)
+#' lF$ScalingExp2<-parm(0.5)
 #' fit<-sample(10, 20, replace=TRUE)
 #' fit
 #' ThresholdScaleFitness(fit, lF)
@@ -118,15 +126,18 @@ ScalingFitness<-function(fit, lF)
 ThresholdScaleFitness<-function(fit, lF) 
  { 
 	 if (lF$RDM()>1+lF$ScalingThreshold())
-      # decrease pressure
+      # increase pressure
       {return(ScaleFitness(fit, lF$ScalingExp(), lF))}
 	 if (lF$RDM()<1-lF$ScalingThreshold())
-      # increase pressure
+      # decrease pressure
       {return(ScaleFitness(fit, lF$ScalingExp2(), lF))}
       return(fit)
 }
 
-#' Dispersion Ratio Based Fitness Scaling. 
+#' Dispersion Ratio Based Continuous Fitness Scaling. 
+#'
+#' @description The scaling exponent is the product of 
+#'              \code{lF$RDMWeight()} and \code{lF$RDM()}.
 #'
 #' @param fit A fitness vector.
 #' @param lF  Local configuration.
@@ -154,18 +165,22 @@ ContinuousScaleFitness<-function(fit, lF)
 #'        \itemize{ 
 #'         \item "NoScaling": Identity (Default).       
 #'         \item "ConstantScaling": \code{fit^k} with constant exponent.
-#'               Function \code{ConstantScaling}.
+#'               Function \code{ConstantScaling()}.
 #'         \item "ThresholdScaling": 
+#'         \itemize{
+#'         \item 
 #'         If the dispersion ratio is larger than \code{1+threshold}, 
 #'         use a constant scaling exponent with a value below 1 
 #'         (decrease of selection pressure).
-#'               Function \code{ThresholdScaling}.
+#'               Function \code{ThresholdScaling()}.
 #'         \item If the dispersion ratio is lower than \code{1-threshold}, 
 #'         use a constant scaling exponent with a value above 1
 #'         (increase of selection pressure).
+#'         \item Else use a scaling exponent of 1. This means no scaling.
+#'         }
 #'         \item "ContinuousScaling": Use weighted dispersion ratio 
 #'         as scaling exponent.
-#'         Function \code{ContinuousScaling}.
+#'         Function \code{ContinuousScaling()}.
 #'         }
 #'
 #' @return A scaling function. 
@@ -198,7 +213,7 @@ return(f)
 #'      the ratio \code{DM(t)/DM(k)}
 #'      where \code{DM(t)} is the dispersion measure of period t and 
 #'      \code{DM(k)} the dispersion measure of period \code{max(1, (t-k))}.
-#'      \code{k} is specified by \code{lF$ScalingDelay}.
+#'      \code{k} is specified by \code{lF$ScalingDelay()}.
 #'     
 #' @details The dispersion ratio may take unreasonably high and low values
 #'          leading to numerical underflow or overflow 
@@ -250,7 +265,7 @@ DispersionRatio<-function(popStat, DM, lF)
 
 #' Configure dispersion measure.
 #'
-#' \code{DispersionMeasureFactory} returns a function 
+#' \code{DispersionMeasureFactory()} returns a function 
 #' for the dispersion measure as specified by a label.
 #'     If an invalid label is 
 #'     specified, the configuration fails.

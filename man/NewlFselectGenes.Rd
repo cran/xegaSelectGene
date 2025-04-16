@@ -10,7 +10,7 @@ NewlFselectGenes()
 Local configuration \code{lF}.
 }
 \description{
-\code{NewlFselectGenes} returns 
+\code{NewlFselectGenes()} returns 
              the list of functions which contains 
              a definition of all local objects required for the use
              of selection functions. We reference this object 

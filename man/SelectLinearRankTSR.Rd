@@ -2,7 +2,7 @@
 % Please edit documentation in R/selectGene.R
 \name{SelectLinearRankTSR}
 \alias{SelectLinearRankTSR}
-\title{Linear rank selection.}
+\title{Linear rank selection with interpolated target sampling rates.}
 \usage{
 SelectLinearRankTSR(fit, lF, size = 1)
 }
@@ -17,17 +17,17 @@ SelectLinearRankTSR(fit, lF, size = 1)
 The index vector of selected genes.
 }
 \description{
-\code{SelectLinearRankTSR} implements selection
+\code{SelectLinearRankTSR()} implements selection
      with interpolated target sampling rates.
 }
 \details{
 The target sampling rate is a linear interpolation 
-         between \code{lF$MaxTSR} and \code{Min<-2-lF$MaxTSR},
+         between \code{lF$MaxTSR()} and \code{Min<-2-lF$MaxTSR()},
          because the sum of the target sampling rates is $n$. 
          The target sampling rates are computed and used as a fitness
          vector for stochastic universal sampling algorithm
-         implemented by \code{SelectSUS}.
-         \code{lF$MaxTSR} should be in [1.0, 2.0].
+         implemented by \code{SelectSUS()}.
+         \code{lF$MaxTSR()} should be in [1.0, 2.0].
               
          TODO: More efficient implementation. We use two sorts!
 }
@@ -48,16 +48,16 @@ Grefenstette, John J. and Baker, James E. (1989):
 Other Selection Functions: 
 \code{\link{SelectDuel}()},
 \code{\link{SelectLRSelective}()},
+\code{\link{SelectPropFit}()},
+\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitDiffM}()},
 \code{\link{SelectPropFitDiffOnln}()},
-\code{\link{SelectPropFitDiff}()},
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
-\code{\link{SelectPropFit}()},
 \code{\link{SelectSTournament}()},
 \code{\link{SelectSUS}()},
 \code{\link{SelectTournament}()},
-\code{\link{SelectUniformP}()},
-\code{\link{SelectUniform}()}
+\code{\link{SelectUniform}()},
+\code{\link{SelectUniformP}()}
 }
 \concept{Selection Functions}

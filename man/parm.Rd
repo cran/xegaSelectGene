@@ -13,7 +13,7 @@ parm(x)
 The constant function.
 }
 \description{
-\code{parm} builds a constant function for \code{x}. 
+\code{parm()} builds a constant function for \code{x}. 
             See Wickham (2019).
 }
 \examples{

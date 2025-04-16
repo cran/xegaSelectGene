@@ -44,7 +44,7 @@ Script for testing a single selection functions
 
    The time to run the function for \code{lim>6} explodes 
    for all benchmark functions with higher than linear complexity.
-   (e.g. \code{PropFit}, \code{PropFitdiff}, and \code{Tournament}).
+   (e.g. \code{PropFit()}, \code{PropFitdiff()}, and \code{Tournament()}).
 }
 
 \examples{
