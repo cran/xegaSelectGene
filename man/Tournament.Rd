@@ -12,7 +12,7 @@ Tournament(fit, lF)
 \item{lF}{Local configuration.}
 }
 \value{
-Index of the best candidate.
+The index vector of the best candidates in \code{size} tournaments.
 }
 \description{
 \code{Tournament()} is implemented in two steps:

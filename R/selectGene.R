@@ -59,7 +59,8 @@ NewlFselectGenes<-function()
 	 MaxTSR = parm(1.9),
 	 DRmax = parm(2.0),
 	 DRmin = parm(0.5),
-         ScalingDelay = parm(1)
+         ScalingDelay = parm(1),
+         TopK = parm(2)
 	 ##
          )
 }
@@ -492,15 +493,15 @@ return(c(i1, i2))
 #' @param fit    Fitness vector.
 #' @param lF     Local configuration.
 #'
-#' @return Index of the best candidate.
+#' @return The index vector of the best candidates in \code{size} tournaments.
 #'
 #' @examples
 #' fit<-sample(10, 15, replace=TRUE)
 #' Tournament(fit, NewlFselectGenes()) 
 #' @export
 Tournament<-function(fit, lF)
-{ cand<-sample(length(fit), size=lF$TournamentSize())
- (cand[max(fit[cand])==fit[cand]])[1] }
+      {cand<-sample(length(fit), size=lF$TournamentSize())
+      (cand[max(fit[cand])==fit[cand]])[1] }
 
 #' Stochastic tournament of size \code{k}.
 #' 
@@ -515,14 +516,17 @@ Tournament<-function(fit, lF)
 #' @param fit    Fitness vector.
 #' @param lF     Local configuration.
 #'
+#' @return The index vector of the best candidates in \code{size} tournaments.
+#'
 #' @return Index of candidate.
 #'
 #' @examples
 #' fit<-sample(10, 15, replace=TRUE)
+#' fit
 #' STournament(fit, NewlFselectGenes()) 
 #' @export
 STournament<-function(fit, lF)
-{ cand<-sample(length(fit), size=lF$TournamentSize())
+  {cand<-sample(length(fit), size=lF$TournamentSize())
   cand[SelectPropFit(fit[cand], lF)]}
 
 #' Tournament selection. 
@@ -673,6 +677,36 @@ sB<-lF$SelectionBias()
 i<-1.0+length(fit)*(sB-sqrt(sB*sB-4.0*(sB-1.0)*stats::runif(rep(1, size))))/2.0/(sB-1.0)
 f<-sort(fit, decreasing=TRUE, index.return=TRUE)
 return(f$ix[as.integer(i)])
+}
+
+#' The best k genes are selected.
+#'
+#' @description \code{SelectTopK} implements the selection
+#'      of the top K genes.
+#'               
+#' @details For implementing migration in island models 
+#'          and  best differential evolution operators.
+#'               
+#' @param fit    Fitness vector.
+#' @param lF     Local configuration.
+#' @param size   Size of return vector (default: 1).
+#'
+#' @return The index vector of selected genes.
+#'
+#' @family Selection Functions
+#'
+#' @examples
+#' fit<-sample(10, 15, replace=TRUE)
+#' fit
+#' SelectTopK(fit, NewlFselectGenes()) 
+#' SelectTopK(fit, NewlFselectGenes(), size=3) 
+#' SelectTopK((-1)*fit, NewlFselectGenes(), size=length(fit)) 
+#' @importFrom stats runif
+#' @export
+SelectTopK<- function(fit, lF, size=1) {
+f<-sort(fit, decreasing=TRUE, index.return=TRUE)
+b<-(f$ix[1:min(lF$TopK(),length(fit))])
+rep(b, ceiling(size/length(b)))[1:size]
 }
 
 #' Linear rank selection with interpolated target sampling rates.
@@ -832,6 +866,7 @@ TransformSelect<-function(fit, lF, SelectFUN)
 #'              \item "LRSelective" returns \code{SelectLRSelective()}.
 #'              \item "LRTSR" returns \code{SelectLinearRankTSR()}.
 #'              \item "SUS" returns \code{SelectSUS()}.
+#'              \item "TopK" returns \code{SelectTopK()}.
 #'              }
 #'
 #' @details
@@ -879,6 +914,7 @@ if (method=="STournament") {f<- SelectSTournament}
 if (method=="LRSelective") {f<- SelectLRSelective}
 if (method=="LRTSR") {f<- SelectLinearRankTSR}
 if (method=="SUS") {f<- SelectSUS}
+if (method=="TopK") {f<- SelectTopK}
 if (!exists("f", inherits=FALSE)) 
 	{stop("Selection label ", method, " does not exist")}
 return(f)

@@ -1,6 +1,6 @@
 Package: xegaSelectGene
 Title: Selection of Genes and Gene Representation Independent Functions
-Version: 1.0.0.3
+Version: 1.0.0.4
 Authors@R: 
     person(given = "Andreas",
            family = "Geyer-Schulz",
@@ -8,8 +8,9 @@ Authors@R:
            email = "Andreas.Geyer-Schulz@kit.edu",
     comment = c(ORCID = "0009-0000-5237-3579"))
 Description: This collection of gene representation-independent 
-             mechanisms for evolutionary and genetic algorithms contains
-             four groups of functions:
+             mechanisms for evolutionary and genetic algorithms
+             for the R-package xega <https://CRAN.R-project.org/package=xega> 
+             contains four groups of functions:
              First, functions for selecting a gene 
              in a population of genes according to its fitness value
              and for adaptive scaling of the fitness values as well as for 
@@ -28,6 +29,8 @@ Description: This collection of gene representation-independent
              for function optimization, combinatorial optimization, and
              grammar-based genetic programming and grammatical evolution
              is provided for tutorial examples.
+             For xega's architecture, 
+             see Geyer-Schulz, A. (2025) <doi:10.5445/IR/1000187255>.
              The methods in the package are described by the following
              references:
              Baker, James E. (1987, ISBN:978-08058-0158-8), 
@@ -49,15 +52,15 @@ Description: This collection of gene representation-independent
 License: MIT + file LICENSE
 URL: https://github.com/ageyerschulz/xegaSelectGene
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: testthat (>= 3.0.0)
 Collate: 'evalGene.R' 'scaling.R' 'selectGene.R'
         'selectGeneBenchmark.R' 'timer.R' 'DeJongF4.R' 'Parabola2D.R'
         'newXOR.R' 'newTSP.R' 'xegaSelectGene-package.R'
 NeedsCompilation: no
-Packaged: 2025-04-16 09:43:40 UTC; dj2333
-Author: Andreas Geyer-Schulz [aut, cre]
-    (<https://orcid.org/0009-0000-5237-3579>)
+Packaged: 2026-02-13 15:55:37 UTC; dj2333
+Author: Andreas Geyer-Schulz [aut, cre] (ORCID:
+    <https://orcid.org/0009-0000-5237-3579>)
 Maintainer: Andreas Geyer-Schulz <Andreas.Geyer-Schulz@kit.edu>
 Repository: CRAN
-Date/Publication: 2025-04-16 10:30:02 UTC
+Date/Publication: 2026-02-13 17:50:02 UTC

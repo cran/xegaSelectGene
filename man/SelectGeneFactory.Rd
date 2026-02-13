@@ -37,6 +37,7 @@ A selection function for genes.
              \item "LRSelective" returns \code{SelectLRSelective()}.
              \item "LRTSR" returns \code{SelectLinearRankTSR()}.
              \item "SUS" returns \code{SelectSUS()}.
+             \item "TopK" returns \code{SelectTopK()}.
              }
 }
 \details{

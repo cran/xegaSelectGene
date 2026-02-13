@@ -12,6 +12,8 @@ STournament(fit, lF)
 \item{lF}{Local configuration.}
 }
 \value{
+The index vector of the best candidates in \code{size} tournaments.
+
 Index of candidate.
 }
 \description{
@@ -25,5 +27,6 @@ A gene is selected with probability proportional to fitness.
 }
 \examples{
 fit<-sample(10, 15, replace=TRUE)
+fit
 STournament(fit, NewlFselectGenes()) 
 }

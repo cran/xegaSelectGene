@@ -49,6 +49,7 @@ Other Selection Functions:
 \code{\link{SelectPropFitM}()},
 \code{\link{SelectPropFitOnln}()},
 \code{\link{SelectSTournament}()},
+\code{\link{SelectTopK}()},
 \code{\link{SelectTournament}()},
 \code{\link{SelectUniform}()},
 \code{\link{SelectUniformP}()}
